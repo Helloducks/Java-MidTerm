@@ -57,5 +57,35 @@ public class DBUtilitity {
         }
         return areaCodes;
     }
+    public static ArrayList<Employee> retrieveDataWithComboxInput(String comboBoxInput){
+        ArrayList<Employee> Employees = new ArrayList<>();
+        String sql = "SELECT employee_id,first_name,last_name,address,city,province,phone\n" +
+                "FROM midTermEmployee\n" +
+                "WHERE SUBSTRING(phone, 1, 3) = " + comboBoxInput +";";
+        try (
+                Connection conn = DriverManager.getConnection(connectionString, user, pass);
+                Statement statement = conn.createStatement();
+                ResultSet resultSet = statement.executeQuery(sql);
+        ) {
+            while(resultSet.next()){
+                int id = resultSet.getInt("employee_id");
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+
+                String address = resultSet.getString("address");
+
+                String city = resultSet.getString("city");
+                String province = resultSet.getString("province");
+                String phoneNo = resultSet.getString("phone");
+                Employee newemployee = new Employee(id,firstName,lastName,address,city,province,phoneNo);
+                Employees.add(newemployee);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return Employees;
+
+    }
 
 }

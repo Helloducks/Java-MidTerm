@@ -74,6 +74,9 @@ public class EmployeeController implements Initializable {
 
     @FXML
     void areaCodeComboBox_OnClick(ActionEvent event) {
+        tableView.getItems().clear();
+        tableView.getItems().addAll(DBUtilitity.retrieveDataWithComboxInput(areaCodeComboBox.getValue().toString()));
+        noOfEmployeesLabel.setText("No of emoployee "+Integer.toString(tableView.getItems().size()));
 
     }
 }
