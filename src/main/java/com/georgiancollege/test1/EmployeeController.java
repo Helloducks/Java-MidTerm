@@ -69,6 +69,16 @@ public class EmployeeController implements Initializable {
 
     @FXML
     void ontarioOnlyCheckBox_OnClick(ActionEvent event) {
+        if(ontarioOnlyCheckBox.isSelected()) {
+            tableView.getItems().clear();
+            tableView.getItems().addAll(DBUtilitity.retrieveDataWithCheckBox());
+            noOfEmployeesLabel.setText("No of emoployee " + Integer.toString(tableView.getItems().size()));
+        }else{
+            tableView.getItems().clear();
+            tableView.getItems().addAll(DBUtilitity.retrieveEmplyoeeFromDB());
+            noOfEmployeesLabel.setText("No of emoployee " + Integer.toString(tableView.getItems().size()));
+
+        }
 
     }
 
