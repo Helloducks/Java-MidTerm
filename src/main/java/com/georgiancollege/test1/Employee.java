@@ -12,10 +12,10 @@ public class Employee {
 
 
     private String firstName, lastName, address, city, province;
-    private int phoneNo;
+    private String phoneNo;
 
 
-    public Employee(int employeeID, String firstName, String lastName, String address, String city, String province, int phoneNo) {
+    public Employee(int employeeID, String firstName, String lastName, String address, String city, String province, String phoneNo) {
         this.employeeID = employeeID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -99,15 +99,15 @@ public class Employee {
         }
     }
 
-    public int getPhoneNo() {
+    public String getPhoneNo() {
         return phoneNo;
     }
 
-    public void setPhoneNo(int phoneNo) {
+    public void setPhoneNo(String phoneNo) {
         String regex = "[2-9]\\d{2}-[2-9]\\d{2}-\\d{4}";
         Pattern pattern = Pattern.compile(regex);
-        String stringNo = Integer.toString(phoneNo);
-        Matcher matcher = pattern.matcher(stringNo);
+
+        Matcher matcher = pattern.matcher(phoneNo);
         if(matcher.matches()) {
             this.phoneNo = phoneNo;
         }else{
